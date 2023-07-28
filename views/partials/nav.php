@@ -11,9 +11,24 @@
     <ul class="nav__user">
         <?php if (isset($_COOKIE['user_id'])) : ?>
 
+            <?php
+            require 'database.php';
+            $user_id = $_COOKIE['user_id'];
+
+            $stmt = $conn->prepare("SELECT * FROM reviews WHERE uid = :uid");
+            $stmt->bindParam(":uid", $user_id);
+            $stmt->execute();
+            $reviewCount = $stmt->rowCount();
+
+            $stmt = $conn->prepare("SELECT * FROM watchlist WHERE uid = :uid");
+            $stmt->bindParam(":uid", $user_id);
+            $stmt->execute();
+            $watchlistCount = $stmt->rowCount();
+            ?>
+
             <li><a href="/profile"><i class="fa-solid fa-user"></i> Profile</a></li>
-            <li><a href="/watchlist"><i class="fa-solid fa-clapperboard"></i> Watchlist <sup>(0)</sup> </a></li>
-            <li><a href="/reviews"><i class="fa-solid fa-star-half-stroke"></i> Reviews <sup>(0)</sup> </a></li>
+            <li><a href="/watchlist"><i class="fa-solid fa-clapperboard"></i> Watchlist <sup>(<?= $watchlistCount ?>)</sup> </a></li>
+            <li><a href="/reviews"><i class="fa-solid fa-star-half-stroke"></i> Reviews <sup>(<?= $reviewCount ?>)</sup> </a></li>
             <li><button onClick=logOut()><i class="fa-solid fa-right-from-bracket"></i> Logout</button></li>
 
         <?php else : ?>

@@ -2,9 +2,14 @@
 
 $routes = [
     '/' => 'controllers/index.php',
+    '/movies' => 'controllers/movies.php',
+    '/movie' => 'controllers/movie.php',
     '/login' => 'controllers/login.php',
     '/signup' => 'controllers/signup.php',
     '/logout' => 'controllers/logout.php',
+    '/profile' => 'controllers/profile.php',
+    '/watchlist' => 'controllers/watchlist.php',
+    '/reviews' => 'controllers/reviews.php',
 ];
 
 function routeToController($uri, $routes)

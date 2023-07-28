@@ -31,7 +31,7 @@ function deleteAccount(uid) {
     confirmButtonText: "Yes",
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = "user_delete.php?uid=" + uid + "";
+      window.location.href = "deleteUser.php?uid=" + uid + "";
     }
   });
 }

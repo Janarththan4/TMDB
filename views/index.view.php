@@ -16,20 +16,33 @@ require 'partials/nav.php';
     <section class="movies">
         <h1>Recent Movies</h1>
         <div class="movies__container">
-            <div class="movie__container">
-                <?php // 
-                ?>
-            </div>
+            <?php while ($recentMovie = $recentMovies->fetch(PDO::FETCH_ASSOC)) :  ?>
+                <div class="movie__container">
+                    <a href="/movie?mid=<?= $recentMovie['mid'] ?>">
+                        <img src="/uploads/<?= $recentMovie['poster'] ?>" alt="" class="movie__poster">
+                        <span>
+                            [<?= strtoupper(substr($recentMovie['language'], 0, 2)) ?>]
+                            <?= $recentMovie['title'] ?>
+                            (<?= $recentMovie['year'] ?>)
+                        </span>
+                    </a>
+                </div>
+            <?php endwhile; ?>
         </div>
     </section>
 
     <section class="reviews">
         <h1>Recent Reviews</h1>
         <div class="reviews__container">
-            <div class="review__container">
-                <?php // 
-                ?>
-            </div>
+            <?php while ($recentReview = $recentReviews->fetch(PDO::FETCH_ASSOC)) : ?>
+                <div class="review__container">
+
+                    <h3><?= $recentReview['review'] ?></h3>
+                    <p>- <a href="/movie?mid=<?= $recentReview['mid'] ?>"><?= $recentReview['title'] ?></a></p>
+                    <i>by <?= $recentReview['username'] ?></i>
+
+                </div>
+            <?php endwhile; ?>
         </div>
     </section>
 

@@ -1,7 +1,6 @@
 <?php
 $title = "TMDB &bull; 404";
 require 'partials/header.php';
-require 'partials/nav.php';
 ?>
 <style>
     .page__notfound {
@@ -34,6 +33,3 @@ require 'partials/nav.php';
         <a href="/">Go Home</a>
     </div>
 </main>
-
-<?php
-require 'partials/footer.php';
